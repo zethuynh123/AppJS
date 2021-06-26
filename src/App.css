@@ -1,0 +1,426 @@
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  
+}
+
+#customers td, #customers th {
+  border: 2px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+
+.form__group {
+  position: relative;
+  margin-top: 26px;
+  width: 250px; 
+  border: 2px solid #DDD;
+  border-bottom-color: none;
+
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1.1rem;
+  color: black;
+  padding: 32px 0px 1px 0px;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.form__field::placeholder {
+  color: transparent;
+  padding: 25px 0;
+}
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 73px;
+}
+
+.form__label {
+  position: absolute;
+  top: 55px;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #9b9b9b;
+  padding:0;
+}
+
+.form__field:focus {
+  font-weight: 400;
+  border-width: 2px;
+  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  border-image-slice: 1;
+
+}
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: 55px;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.1rem;
+  color: #11998e;
+  font-weight: 500;
+}
+
+/* reset input */
+.form__field:required, .form__field:invalid {
+  box-shadow: none;
+}
+/* Form Số tiền nợ */
+
+.form__group {
+  position: relative;
+  margin-top: 26px;
+  width: 250px;
+  border: 2px solid #DDD;
+  border-bottom-color: none;
+}
+
+.form__field2 {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1.1rem;
+  color: black;
+  padding: 32px 0px 1px 0px;
+  background: transparent;
+  transition: border-color 0.2s;
+ 
+}
+.form__field2::placeholder {
+  color: transparent;
+  padding: 25px 0;
+
+}
+.form__field2:placeholder-shown ~ .form__label2 {
+  font-size: 1.3rem;
+  cursor: text;
+  top: 182px;
+}
+
+.form__label2 {
+  position: absolute;
+  margin-top: -51px;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #9b9b9b;
+  padding:0;
+}
+
+.form__field2:focus {
+  font-weight: 400;
+  border-width: 2px;
+  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  border-image-slice: 1;
+
+}
+.form__field2:focus ~ .form__label2 {
+  position: absolute;
+  top: 163px;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.2rem;
+  color: #11998e;
+  font-weight: 500;
+}
+
+/* reset input */
+.form__field2:required, .form__field2:invalid {
+  box-shadow: none;
+}
+/* Form Lãi suất */
+.form__group {
+  position: relative;
+  margin-top: 26px;
+  width: 250px;
+  border: 2px solid #DDD;
+  border-bottom-color: none;
+}
+
+.form__field3 {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1.1rem;
+  color: black;
+  padding: 32px 0px 1px 0px;
+  background: transparent;
+  transition: border-color 0.2s;
+ 
+}
+.form__field3::placeholder {
+  color: transparent;
+  padding: 25px 0;
+
+}
+.form__field3:placeholder-shown ~ .form__label3 {/*lãi xuất khi chưa kích gì và không ảnh hưởng đến hai cái kia*/
+  font-size: 1.3rem;
+  cursor: text;
+  top: 244px;
+}
+
+.form__label3 { /*lãi xuất khi chưa kích gi và bị ảnh hưởng khi kích ra vùng trống*/
+  position: absolute;
+  margin-top: -53px;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #9b9b9b;
+  padding:0;
+}
+
+.form__field3:focus {
+  font-weight: 400;
+  border-width: 2px;
+  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  border-image-slice: 1;
+
+}
+.form__field3:focus ~ .form__label3 { /*lãi xuất khi kích vô// */
+  position: absolute;
+  top: 221px;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.2rem;
+  color: #11998e;
+  font-weight: 500;
+}
+
+/* reset input */
+.form__field3:required, .form__field3:invalid {
+  box-shadow: none;
+}
+/* Form Ngày Nợ */
+.form__group {
+  position: relative;
+  margin-top: 26px;
+  width: 250px;
+  border: 2px solid #DDD;
+  border-bottom-color: none;
+}
+
+.form__field4 {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1.1rem;
+  color: black;
+  padding: 32px 0px 1px 0px;
+  background: transparent;
+  transition: border-color 0.2s;
+ 
+}
+.form__field4::placeholder {
+  color: transparent;
+  padding: 25px 0;
+
+}
+.form__field4:placeholder-shown ~ .form__label4 {/*lãi xuất khi chưa kích gì và không ảnh hưởng đến hai cái kia*/
+  font-size: 1.3rem;
+  cursor: text;
+  top: 297px;
+}
+
+.form__label4 { /*lãi xuất khi chưa kích gi và bị ảnh hưởng khi kích ra vùng trống*/
+  position: absolute;
+  margin-top: -50px;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #9b9b9b;
+  padding:0;
+}
+
+.form__field4:focus {
+  font-weight: 400;
+  border-width: 2px;
+  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  border-image-slice: 1;
+
+}
+.form__field4:focus ~ .form__label4 { /*lãi xuất khi kích vô// */
+  position: absolute;
+  top: 279px;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.2rem;
+  color: #11998e;
+  font-weight: 500;
+}
+
+/* reset input */
+.form__field4:required, .form__field4:invalid {
+  box-shadow: none;
+}
+/* Form Ngày trả */
+.form__group {
+  position: relative;
+  margin-top: 26px;
+  width: 250px;
+  border: 2px solid #DDD;
+  border-bottom-color: none;
+}
+
+.form__field5 {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1.1rem;
+  color: black;
+  padding: 32px 0px 1px 0px;
+  background: transparent;
+  transition: border-color 0.2s;
+ 
+}
+.form__field5::placeholder {
+  color: transparent;
+  padding: 25px 0;
+
+}
+.form__field5:placeholder-shown ~ .form__label5 {/*lãi xuất khi chưa kích gì và không ảnh hưởng đến hai cái kia*/
+  font-size: 1.3rem;
+  cursor: text;
+  top: 356px;
+}
+
+.form__label5 { /*lãi xuất khi chưa kích gi và bị ảnh hưởng khi kích ra vùng trống*/
+  position: absolute;
+  margin-top: -50px;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #9b9b9b;
+  padding:0;
+}
+
+.form__field5:focus {
+  font-weight: 400;
+  border-width: 2px;
+  border-image: linear-gradient(to right, #11998e, #38ef7d);
+  border-image-slice: 1;
+
+}
+.form__field5:focus ~ .form__label5 { /*lãi xuất khi kích vô// */
+  position: absolute;
+  top: 337px;
+  display: block;
+  transition: 0.2s;
+  font-size: 1.2rem;
+  color: #11998e;
+  font-weight: 500;
+}
+
+/* reset input */
+.form__field5:required, .form__field5:invalid {
+  box-shadow: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.Body{
+  display: flex;
+}
+.DanhSach{
+  margin-right: 30px;
+}
+Body{
+  margin-left: 20px;
+}
+.Header{
+  text-align: center;
+  font-family:  fantasy;
+}
+.form__label1{
+  border-width: 300px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: #04AA6D;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: 2px solid #ddd ;
+
+}
+.Table{
+  margin-top: 25px;
+}
+/* Căn chỉnh Form */
+#lable{
+  margin-left: 58px;
+  
+  
+}
+#lable2{
+  margin-left: 73px;
+  
+  
+}
+#lable3{
+  margin-left: 84px;
+  
+  
+}
+#lable4{
+  margin-left: 80px;
+  
+  
+}
+#lable5{
+  margin-left: 82px;
+  
+  
+}
+/* button */
+Button{
+  cursor: pointer;
+  top: 390px;
+  right:200px;
+
+}
+.b123:hover {
+  background-color: pink;
+  color: red;
+}
