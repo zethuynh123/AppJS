@@ -1,11 +1,13 @@
 import './App.css'; 
-import Todolist from './Components/Todolist.js'
+import TodoList from './Components/TodoList'
 import { buildQueries, render } from '@testing-library/react';
 import { Component, useState } from 'react';
 import { v4 } from  "uuid";
 import Button from '@atlaskit/button';
+import React, { useCallback } from "react";
 
 function App() {
+
   const [DanhSach, setDanhSach] =useState([]);
   const [textInput1, setTextInput1] =useState([]);
   const [textInput2, setTextInput2] =useState([]);
@@ -31,24 +33,37 @@ function App() {
   //Hàm onAddBtnClick//
   const onAddBtnClick1 = (e) => {
     //thêm textinput vào danh sach//
-    setDanhSach([...DanhSach,{id: v4(), name: textInput1, isCompleted: false}]);
-  }
-  const onAddBtnClick2 = (e) => {
-    //thêm textinput vào danh sach//
-    setDanhSach([...DanhSach,{id: v4(), name: textInput2, isCompleted: false}]);
-  }
-  const onAddBtnClick3 = (e) => {
-    //thêm textinput vào danh sach//
-    setDanhSach([...DanhSach,{id: v4(), name: textInput3, isCompleted: false}]);
-  }
-  const onAddBtnClick4 = (e) => {
-    //thêm textinput vào danh sach//
-    setDanhSach([...DanhSach,{id: v4(), name: textInput4, isCompleted: false}]);
-  }
-  const onAddBtnClick5 = (e) => {
-    //thêm textinput vào danh sach//
-    setDanhSach([...DanhSach,{id: v4(), name: textInput5, isCompleted: false}]);
-  }
+    setDanhSach([
+      {
+        id: v4(), 
+        textInput1:textInput1,
+        textInput2:textInput2,
+        textInput3:textInput3,
+        textInput4:textInput4,
+        textInput5,textInput5,
+        isCompleted: false
+      },
+      ...DanhSach]);
+    };
+  const handleSubmit = (e) => {
+        e.preventDefault();
+        setTextInput1("");
+        setTextInput2("");
+        setTextInput3("");
+        setTextInput4("");
+        setTextInput5("");
+      };    
+  const onCheckBtnClick = useCallback((id) => {
+        setDanhSach((pre) =>
+          pre.map((todo) =>
+            todo.id === id ? { ...todo, isCompleted: true } : todo
+          )
+        );
+      }, []);    
+  const handleSearchInput = (name) => {
+        alert('Em chua lam ra anh Huy a!')
+      };
+
   return (
     <body>     
     <div class=" Header">
@@ -57,64 +72,102 @@ function App() {
     <div class="Body">
       <div class="DanhSach">
         <table id="customers" class="Table">
-            <tr>
-                <th>Tên Người Nợ</th>
-                <th>Số Tiền Nợ</th>
-                <th>Ngày Nợ</th>
-                <th>Ngày Trả</th>
-                <th>Phần Trăm Lãi</th>
-                <th>Nợ Phải Trả Hiện Tại</th>
-            </tr>
-            <tr>
-                <td>Duy</td>
-                <td>1k</td>
-                <td>24/4/2021</td>
-                <td>25/4/2021</td>
-                <td>4%</td>
-                <td>2k</td>
-            </tr>
+        <thead>
+          <tr>
+            <th className="text-center">STT</th>
+            <th className="text-center">Tên</th>
+            <th className="text-center">Số nợ</th>
+            <th className="text-center">Ngày nợ</th>
+            <th className="text-center">Ngày trả</th>
+            <th className="text-center">Lãi suất</th>
+            <th className="text-center">Số nợ phải trả</th>
+            <th className="text-center">Hành Động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="head-tr">
+            <td></td>
+            <td>
+              
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          {DanhSach.map((e, index) => {
+            return (
+              <tr className={e.isCompleted ? "check-icon" : ""} key={index}>
+                <td>{index + 1}</td>
+                <td className="text-left"> {e.textInput1} </td>
+                <td> {e.textInput2}đ</td>
+
+                <td>{e.textInput4}</td>
+                <td>{e.textInput5}</td>
+                <td>{e.textInput3}%</td>
+
+                <td>
+                  {parseInt(e.textInput2) +
+                    parseInt(e.textInput2) * 10 * (parseInt(e.textInput3) % 100)}
+                </td>
+                <td className="text-center d-flex justify-center">
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => onCheckBtnClick(e.id)}
+                  >
+                    Xóa
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
         </table>
       </div>
       <div class="form__group field">
         <div class="form__label1"> Thêm Tên Người Nợ</div>
         <div>
-        <input type="input" class="form__field" placeholder="Name" name="name" id='name5' 
+        <input type="input" class="form__field" placeholder="Name" id='name5' 
         value={textInput1}
         onChange={onTextInPutChange1} 
          required />
         <label for="name" class="form__label" id="lable">Tên Người Nợ</label>
         </div>
         <div>
-        <input type="input" class="form__field2" placeholder="Name" name="name" id='name4' 
+        <input type="input" class="form__field2" placeholder="Name" id='name4' 
         value={textInput2}
         onChange={onTextInPutChange2} 
         required />
         <label for="name" class="form__label2" id="lable2">Số Tiền Nợ</label>
         </div>
         <div>
-        <input type="input" class="form__field3" placeholder="Name" name="name" id='name3' 
+        <input type="input" class="form__field3" placeholder="Name" id='name3' 
         value={textInput3}
         onChange={onTextInPutChange3} 
         required />
         <label for="name" class="form__label3" id="lable3">Lãi Suất</label>
         </div>
         <div>
-        <input type="input" class="form__field4" placeholder="Name" name="name" id='name2' 
+        <input type="input" class="form__field4" placeholder="Name" id='name2' 
         value={textInput4}
         onChange={onTextInPutChange4} 
         required />
         <label for="name" class="form__label4" id="lable4">Ngày Nợ</label>
         </div>
-        <input type="input" class="form__field5" placeholder="Name" name="name" id='name1' 
+        <input type="input" class="form__field5" placeholder="Name" id='name1' 
         value={textInput5}
         onChange={onTextInPutChange5} 
         required />
         <label for="name" class="form__label5" id="lable5">Ngày Trả</label> 
       </div>
-      <Button isDisabled={!textInput1}  appearance='primary' class="btn123 b123" onClick={onAddBtnClick1, onAddBtnClick2,onAddBtnClick3,onAddBtnClick4,onAddBtnClick5}
+      <Button isDisabled={!textInput5} appearance='primary' class="btn123 b123" onClick={onAddBtnClick1} 
       >Thêm Danh Sách</Button>
-    </div>
-</body>  
+      </div>
+    </body>  
   );
-}
+
+        }
 export default App;
