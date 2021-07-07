@@ -1,10 +1,12 @@
 import './App.css'; 
 import TodoList from './Components/TodoList'
-import { buildQueries, render } from '@testing-library/react';
+import { buildQueries, getElementError, render } from '@testing-library/react';
 import { Component, useState } from 'react';
 import { v4 } from  "uuid";
 import Button from '@atlaskit/button';
 import React, { useCallback } from "react";
+import moment from 'moment';
+ moment().format();
 
 function App() {
 
@@ -44,26 +46,37 @@ function App() {
         isCompleted: false
       },
       ...DanhSach]);
-    };
-  const handleSubmit = (e) => {
-        e.preventDefault();
         setTextInput1("");
         setTextInput2("");
         setTextInput3("");
         setTextInput4("");
         setTextInput5("");
-      };    
+    };  
   const onCheckBtnClick = useCallback((id) => {
         setDanhSach((pre) =>
-          pre.map((todo) =>
-            todo.id === id ? { ...todo, isCompleted: true } : todo
+          pre.map((DanhSach) =>
+            DanhSach.id === id ? { ...DanhSach, isCompleted: true } : DanhSach
           )
         );
       }, []);    
-  const handleSearchInput = (name) => {
-        alert('Em chua lam ra anh Huy a!')
-      };
-
+      // var c = <TodoList TodoList={textInput4,textInput5}/>;
+  
+      function Date1 (){
+          let sum;
+         let a= new Date(document.getElementById('name1'));
+         let b= new Date(document.getElementById('name2'));
+         let c= <TodoList t1= {`${a}`}></TodoList>;
+         let d= <TodoList t1= {`${b}`}></TodoList>;
+         moment([`${c}`]);
+         moment([`${d}`]);
+         return sum= c.diff(d,'days');
+        
+      }
+      // var a= <TodoList TodoList= {`${textInput5}`}></TodoList>;
+      // var b= <TodoList TodoList= {`${textInput4}`}></TodoList>;
+      
+      // var c = a.diff(b,'days');
+      
   return (
     <body>     
     <div class=" Header">
@@ -74,53 +87,34 @@ function App() {
         <table id="customers" class="Table">
         <thead>
           <tr>
-            <th className="text-center">STT</th>
-            <th className="text-center">Tên</th>
-            <th className="text-center">Số nợ</th>
-            <th className="text-center">Ngày nợ</th>
-            <th className="text-center">Ngày trả</th>
-            <th className="text-center">Lãi suất</th>
-            <th className="text-center">Số nợ phải trả</th>
-            <th className="text-center">Hành Động</th>
+            <th className="text-center1">STT</th>
+            <th className="text-center2">Tên</th>
+            <th className="text-center3">Số nợ</th>
+            <th className="text-center4">Ngày nợ</th>
+            <th className="text-center5">Ngày trả</th>
+            <th className="text-center6">Lãi suất</th>
+            <th className="text-center7">Số nợ phải trả</th>
+            <th className="text-center7">Số ngày nợ</th>
           </tr>
         </thead>
         <tbody>
-          <tr className="head-tr">
-            <td></td>
-            <td>
-              
-            </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
           {DanhSach.map((e, index) => {
             return (
               <tr className={e.isCompleted ? "check-icon" : ""} key={index}>
                 <td>{index + 1}</td>
                 <td className="text-left"> {e.textInput1} </td>
-                <td> {e.textInput2}đ</td>
+                <td> {e.textInput2} Vnđ</td>
 
                 <td>{e.textInput4}</td>
-                <td>{e.textInput5}</td>
+                <td>{e.textInput5} </td>
                 <td>{e.textInput3}%</td>
 
                 <td>
                   {parseInt(e.textInput2) +
-                    parseInt(e.textInput2) * 10 * (parseInt(e.textInput3) % 100)}
+                    (parseInt(e.textInput2) * console.log(Date1()) * (parseInt(e.textInput3))/100)} Vnđ
+                                                                 
                 </td>
-                <td className="text-center d-flex justify-center">
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => onCheckBtnClick(e.id)}
-                  >
-                    Xóa
-                  </button>
-                </td>
+                <td>a.diff(b,'days')</td>
               </tr>
             );
           })}
@@ -130,34 +124,34 @@ function App() {
       <div class="form__group field">
         <div class="form__label1"> Thêm Tên Người Nợ</div>
         <div>
-        <input type="input" class="form__field" placeholder="Name" id='name5' 
+        <input type="text" class="form__field" placeholder="Name" id='name5' 
         value={textInput1}
         onChange={onTextInPutChange1} 
          required />
         <label for="name" class="form__label" id="lable">Tên Người Nợ</label>
         </div>
         <div>
-        <input type="input" class="form__field2" placeholder="Name" id='name4' 
+        <input type="number" step="500"class="form__field2" placeholder="Name" id='name4' 
         value={textInput2}
         onChange={onTextInPutChange2} 
         required />
         <label for="name" class="form__label2" id="lable2">Số Tiền Nợ</label>
         </div>
         <div>
-        <input type="input" class="form__field3" placeholder="Name" id='name3' 
+        <input type="number" class="form__field3" placeholder="Name" id='name3' 
         value={textInput3}
         onChange={onTextInPutChange3} 
         required />
         <label for="name" class="form__label3" id="lable3">Lãi Suất</label>
         </div>
         <div>
-        <input type="input" class="form__field4" placeholder="Name" id='name2' 
+        <input type="date" class="form__field4" placeholder="Name" id='name2' 
         value={textInput4}
         onChange={onTextInPutChange4} 
         required />
         <label for="name" class="form__label4" id="lable4">Ngày Nợ</label>
         </div>
-        <input type="input" class="form__field5" placeholder="Name" id='name1' 
+        <input type="date" class="form__field5" placeholder="Name" id='name1' 
         value={textInput5}
         onChange={onTextInPutChange5} 
         required />

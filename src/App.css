@@ -2,6 +2,7 @@
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   
+  
 }
 
 #customers td, #customers th {
@@ -17,7 +18,7 @@
 #customers th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
+  text-align: center;
   background-color: #04AA6D;
   color: white;
 }
@@ -386,30 +387,35 @@ Body{
 }
 .Table{
   margin-top: 25px;
+  text-align: center;
+}
+.form__group{
+  margin-left: 40px;
+  width: 300px;
 }
 /* Căn chỉnh Form */
 #lable{
-  margin-left: 58px;
+  margin-left: 44px;
   
   
 }
 #lable2{
-  margin-left: 73px;
+  margin-left: 56px;
   
   
 }
 #lable3{
-  margin-left: 84px;
+  margin-left:71px;
   
   
 }
 #lable4{
-  margin-left: 80px;
+  margin-left: 70px;
   
   
 }
 #lable5{
-  margin-left: 82px;
+  margin-left: 70px;
   
   
 }
@@ -417,10 +423,30 @@ Body{
 Button{
   cursor: pointer;
   top: 390px;
-  right:200px;
+  right:170px;
 
 }
-.b123:hover {
-  background-color: pink;
-  color: red;
+
+.text-center2{
+  width: 220px;
+}
+.text-center3{
+  width: 120px;
+
+}
+.text-center4{
+  width: 120px;
+
+}
+.text-center5{
+  width: 120px;
+
+}
+.text-center6{
+  width: 120px;
+
+}
+.text-center7{
+  width: 150px;
+
 }
