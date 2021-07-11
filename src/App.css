@@ -420,10 +420,10 @@ Body{
   
 }
 /* button */
-Button{
+#btn{
   cursor: pointer;
   top: 390px;
-  right:170px;
+  right:190px;
 
 }
 

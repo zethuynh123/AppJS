@@ -1,12 +1,13 @@
 import './App.css'; 
 import TodoList from './Components/TodoList'
 import { buildQueries, getElementError, render } from '@testing-library/react';
-import { Component, useState } from 'react';
+import { Component, useEffect, useState } from 'react';
 import { v4 } from  "uuid";
 import Button from '@atlaskit/button';
 import React, { useCallback } from "react";
-import moment from 'moment';
- moment().format();
+import DeleteIcon from "@atlaskit/icon"; 
+
+const STORAGE_KEY = 'STR';
 
 function App() {
 
@@ -16,6 +17,18 @@ function App() {
   const [textInput3, setTextInput3] =useState([]);
   const [textInput4, setTextInput4] =useState([]);
   const [textInput5, setTextInput5] =useState([]);
+  
+  useEffect(() =>{
+    const strapp = localStorage.getItem(STORAGE_KEY);
+    if(strapp){
+      setDanhSach(JSON.parse(strapp));
+    }
+  },[]);
+
+  useEffect(() =>{
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(DanhSach));
+  },[DanhSach]);
+
   // onTextINPutChane//
   const onTextInPutChange1 =(e)=>{
     setTextInput1(e.target.value);
@@ -42,7 +55,7 @@ function App() {
         textInput2:textInput2,
         textInput3:textInput3,
         textInput4:textInput4,
-        textInput5,textInput5,
+        textInput5:textInput5,
         isCompleted: false
       },
       ...DanhSach]);
@@ -58,24 +71,22 @@ function App() {
             DanhSach.id === id ? { ...DanhSach, isCompleted: true } : DanhSach
           )
         );
-      }, []);    
-      // var c = <TodoList TodoList={textInput4,textInput5}/>;
-  
-      function Date1 (){
-          let sum;
-         let a= new Date(document.getElementById('name1'));
-         let b= new Date(document.getElementById('name2'));
-         let c= <TodoList t1= {`${a}`}></TodoList>;
-         let d= <TodoList t1= {`${b}`}></TodoList>;
-         moment([`${c}`]);
-         moment([`${d}`]);
-         return sum= c.diff(d,'days');
-        
-      }
-      // var a= <TodoList TodoList= {`${textInput5}`}></TodoList>;
-      // var b= <TodoList TodoList= {`${textInput4}`}></TodoList>;
-      
-      // var c = a.diff(b,'days');
+      }, []); 
+         
+      function Date1(a,b){
+        console.log(a,b)
+        a= new Date(document.getElementById('name1').value);// ngày trả
+        b= new Date(document.getElementById('name2').value);//ngày nợ
+        let diff= new Date(a.getTime() - b.getTime());
+        return ((diff.getUTCFullYear() - 1970) * 12 * 30 + (diff.getUTCMonth()) * 30 + (diff.getUTCDate() - 1)).toFixed(2);      
+     }
+
+    const removeDS = id => {
+    const removeArr = [...DanhSach].filter(function(ds){
+      return "";
+    });
+    setDanhSach(removeArr);
+  };
       
   return (
     <body>     
@@ -104,17 +115,18 @@ function App() {
                 <td>{index + 1}</td>
                 <td className="text-left"> {e.textInput1} </td>
                 <td> {e.textInput2} Vnđ</td>
-
                 <td>{e.textInput4}</td>
-                <td>{e.textInput5} </td>
+                <td>{e.textInput5}</td>
                 <td>{e.textInput3}%</td>
 
                 <td>
                   {parseInt(e.textInput2) +
-                    (parseInt(e.textInput2) * console.log(Date1()) * (parseInt(e.textInput3))/100)} Vnđ
+                    (parseInt(e.textInput2) * Date1(e.textInput5,e.textInput4) * (parseInt(e.textInput3))/100)} Vnđ
                                                                  
                 </td>
-                <td>a.diff(b,'days')</td>
+                <td>
+                  <Button appearance= 'primary' onClick={removeDS}>Xóa</Button>
+                </td>
               </tr>
             );
           })}
@@ -157,7 +169,8 @@ function App() {
         required />
         <label for="name" class="form__label5" id="lable5">Ngày Trả</label> 
       </div>
-      <Button isDisabled={!textInput5} appearance='primary' class="btn123 b123" onClick={onAddBtnClick1} 
+      <Button isDisabled={!textInput5} appearance='primary' class="btn123 b123" id='btn' onClick={onAddBtnClick1} 
+      iconAfter={<DeleteIcon primaryColor= '#4fff4f'/>}
       >Thêm Danh Sách</Button>
       </div>
     </body>  
